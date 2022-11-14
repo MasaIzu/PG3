@@ -10,12 +10,6 @@ void DispResult(int* s) {
     printf("%dïbä‘ë“ã@\n", *s);
 }
 
-void setTimerout(PFunc p, int second) {
-    p(&second);
-
-    Sleep(second * 1000);
-}
-
 int main() {
 
     srand(time(nullptr));

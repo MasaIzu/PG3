@@ -35,6 +35,6 @@ int main() {
 
     fortune(player, getRand);
 
-
+    //’·•l‚É‹³‚¦‚½‚ç‚»‚Ì‚Ü‚ÜŽg‚í‚ê‚½...
     return 0;
 }

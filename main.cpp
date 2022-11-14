@@ -1,14 +1,46 @@
+#include<functional>
+#include<stdio.h>
+#include<windows.h>
 #include<stdlib.h>
-#include<list>
+#include<time.h>
 
-using namespace std;
+typedef void (*PFunc)(int*);
+
+void DispResult(int* s) {
+    printf("%dïbä‘ë“ã@\n", *s);
+}
+
+void setTimerout(PFunc p, int second) {
+    p(&second);
+
+    Sleep(second * 1000);
+}
 
 int main() {
 
-	list<const char*> lst{"ou"};
+    srand(time(nullptr));
+    int getRand = rand();
+    int player = 0;
+    scanf_s("%d", &player);
 
-	
+    std::function<int(PFunc, int, int)>fx = [](PFunc p, int x, int second) {
+        p(&second);
+        Sleep(second * 1000);
 
-	return 0;
+        return x % 2;
+    };
 
+    getRand = fx(DispResult, getRand, 3);
+
+
+    //ìñÇΩÇ¡ÇƒÇÈÇ©Ç«Ç§Ç©
+    std::function<void(int, int)>fortune = [](int playerSelect, int random) {
+
+        playerSelect == random ? printf("ëÂìñÇΩÇË") : printf("écîOÅAÇÕÇ∏ÇÍ");
+    };
+
+    fortune(player, getRand);
+
+
+    return 0;
 }

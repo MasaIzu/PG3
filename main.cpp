@@ -4,11 +4,6 @@
 #include<stdlib.h>
 #include<time.h>
 
-typedef void (*PFunc)(int*);
-
-void DispResult(int* s) {
-    printf("%d•bŠÔ‘Ò‹@\n", *s);
-}
 
 int main() {
 
@@ -17,14 +12,14 @@ int main() {
     int player = 0;
     scanf_s("%d", &player);
 
-    std::function<int(PFunc, int, int)>fx = [](PFunc p, int x, int second) {
-        p(&second);
+    std::function<int(int, int)>fx = [](int x, int second) {
+        printf("%d•bŠÔ‘Ò‹@\n", second);
         Sleep(second * 1000);
 
         return x % 2;
     };
 
-    getRand = fx(DispResult, getRand, 3);
+    getRand = fx(getRand, 3);
 
 
     //“–‚½‚Á‚Ä‚é‚©‚Ç‚¤‚©

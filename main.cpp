@@ -29,5 +29,6 @@ int main() {
 
     fx(fortune, 3);
 
+    system("pause");
     return 0;
 }

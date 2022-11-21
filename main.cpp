@@ -7,7 +7,7 @@
 
 int main() {
 
-    printf("0か1&エンターキーを入力\n");
+    printf("0になるか1になるか予想して入力してください\n");
     srand(time(nullptr));
     int getRand = rand() % 2;
     int player = 0;

@@ -9,25 +9,23 @@ int main() {
 
     printf("0になるか1になるか予想して入力してください\n");
     srand(time(nullptr));
-    int getRand = rand() % 2;
-    int player = 0;
-    scanf_s("%d", &player);
+    int playerSelect = 0;
+    scanf_s("%d", &playerSelect);
 
    
     //当たってるかどうか
-    std::function<void(int, int)>fortune = [](int playerSelect, int random) {
+    std::function<void()>fortune = [=]() {
 
-        playerSelect == random ? printf("大当たり") : printf("残念、はずれ");
+        playerSelect == rand() % 2 ? printf("大当たり ") : printf("残念、はずれ ");
     };
 
-    std::function<void(std::function<void(int, int)>, int)>fx = [=](std::function<void(int, int)> x, int second) {
-        printf("%d秒間待機\n", second);
+	//タイムアウト
+    std::function<void(std::function<void()>, int)>setTimeout = [=](std::function<void()> d, int second) {
         Sleep(second * 1000);
-
-        x(player, getRand);
+        d();
     };
 
-    fx(fortune, 3);
+    setTimeout(fortune, 3);
 
     system("pause");
     return 0;

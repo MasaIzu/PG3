@@ -31,17 +31,17 @@ struct Cell
 };
 
 template <class T>
-class Mylist
+class MakeMylist
 {
 public:
-	Mylist()
+	MakeMylist()
 	{
 		dummy = new Cell<T>();
 
 		size = 0;
 	}
 
-	~Mylist()
+	~MakeMylist()
 	{
 		//Clear();
 	}

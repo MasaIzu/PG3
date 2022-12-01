@@ -2,23 +2,23 @@
 #include<stdlib.h>
 #include"MakeMyList.h"
 #include <iostream>
+#include<string>
 
-void index(CELL* endCell, int& select);
-void create(CELL* currentCell, int val);
-CELL* getInsertCellAddress(CELL* endCELL, int iterator);
+void index(MakeMyList* endCell, int& select);
+
 
 int main()
 {
 	int iterator;
 	int inputValue;
-	CELL* insertCell;
+	Cell* insertCell;
 
-	CELL head;
+	Cell head;
 	head.next = nullptr;
 
 	int select = 0;
 
-
+	MakeMyList list;
 
 	while (1) {
 		switch (select) {
@@ -40,26 +40,50 @@ int main()
 		case 1:
 			system("cls");
 			//ƒŠƒXƒg‚Ìˆê——‚Ì•\Ž¦
-			index(&head, select);
+			index(&list, select);
 			break;
 		case 2:
 			system("cls");
 			std::cout << "[—v‘f‚Ì‘}“ü]" << std::endl;
 			//ƒŠƒXƒg‚Ì‘}“ü
-			std::cout << "—v‘f‚ð’Ç‰Á‚·‚éêŠ‚ð‘I‘ð‚µ‚Ä‚­‚¾‚³‚¢" << std::endl;
+			std::cout << "—v‘f‚ð’Ç‰Á‚·‚éêŠ‚ð‘I‘ð‚µ‚Ä‚­‚¾‚³‚¢BÅŒã”ö‚É’Ç‰Á‚·‚éê‡‚Í‰½‚à“ü—Í‚µ‚È‚¢‚Å‚­‚¾‚³‚¢B" << std::endl;
+
+			std::string insertNum;
+			while (std::getchar() != '\n');
+
+			std::getline(std::cin, insertNum);
+
+			if (insertNum == "") {
+
+				std::cout << "’Ç‰Á‚·‚é—v‘f‚Ì’l‚ð“ü—Í‚µ‚Ä‚­‚¾‚³‚¢" << std::endl;
+				int element;
+				std::cin >> element;
+
+				list.PushBack(element);
+
+				std::cout << "—v‘f" << element << "‚ª" << "ÅŒã”ö‚É‘}“ü‚³‚ê‚Ü‚µ‚½" << std::endl;
+			}
+
 			scanf_s("%d",&iterator);
 
 			std::cout << "’Ç‰Á‚·‚é—v‘f‚Ì’l‚ð“ü—Í‚µ‚Ä‚­‚¾‚³‚¢" << std::endl;
 			scanf_s("%d", &inputValue);
 
 			//”CˆÓ‚ÌƒZƒ‹‚ÌŒã‚ë‚É’Ç‰Á
-			insertCell = getInsertCellAddress(&head,iterator);
+			insertCell = list.getInsertCellAddress(&head,iterator);
 			create(insertCell, inputValue);
 
-			std::cout << "—v‘f"<< inputValue<< "‚ª" << iterator<< "‚É’Ç‰Á‚³‚ê‚Ü‚µ‚½" << std::endl;
+			std::cout << "—v‘f"<< inputValue<< "‚ª" << iterator<< "”Ô–Ú‚É‘}“ü‚³‚ê‚Ü‚µ‚½" << std::endl;
 
-			std::cout << "—v‘f‚Ì‘€ì‚É–ß‚é‚É‚Í0‚ð“ü—Í‚µ‚Ä‚­‚¾‚³‚¢" << std::endl;
-			scanf_s("%d", &select);
+			std::cout << std::endl;
+			std::cout << "----------------------------------" << std::endl;
+			std::cout << "9.—v‘f‘€ì‚É–ß‚é" << std::endl;
+			int seneSelect;
+			scanf_s("%d", &seneSelect);
+			if (seneSelect == 9) {
+				select = 0;
+			}
+
 			break;
 		case 3:
 
@@ -74,29 +98,12 @@ int main()
 			scanf_s("%d", &select);
 			break;
 		}
-
-
-		////—v‘f‚Ì‘I‘ð
-		//scanf_s("%d", &iterator);
-
-		//printf("‰½”Ô–Ú‚ÌƒZƒ‹‚ÌŒã‚ë‚É‘}“ü‚µ‚Ü‚·‚©H\n");
-		//scanf_s("%d",&iterator);
-
-		//printf("‘}“ü‚·‚é’l‚ð“ü—Í‚µ‚Ä‚­‚¾‚³‚¢\n");
-		//scanf_s("%d", &inputValue);
-
-		////”CˆÓ‚ÌƒZƒ‹‚ÌŒã‚ë‚É’Ç‰Á
-		//insertCell = getInsertCellAddress(&head,iterator);
-		//create(insertCell, inputValue);
-
-		////ƒŠƒXƒg‚Ìˆê——‚Ì•\Ž¦
-		//index(&head);
 	}
 	return 0;
 }
 
 
-void index(CELL* endCell, int& select) {
+void index(MakeMyList& endCell, int& select) {
 	int no = 1;
 	std::cout << "[—v‘f‚Ì•\Ž¦]" << std::endl;
 	std::cout << "1.—v‘f‚Ìˆê——•\Ž¦" << std::endl;
@@ -110,18 +117,25 @@ void index(CELL* endCell, int& select) {
 
 	switch (sceneSelect){
 	case 1:
-		while (endCell->next != nullptr) {
-			std::cout << "[—v‘f‚Ìˆê——•\Ž¦]" << std::endl;
-			endCell = endCell->next;
-			std::cout << ' ' << no << ':' << '"' << endCell->val << '"' << ',' << std::endl;
-			no++;
-		}
+		std::cout << "[—v‘f‚Ìˆê——•\Ž¦]" << std::endl;
+		//ˆê——•\Ž¦
+		endCell.Dump();
 
-		scanf_s("%d", &sceneSelect);
+		std::cout << "—v‘f”:" << endCell.Size() << std::endl;
 		break;
 
 	case 2:
 
+		std::cout << "[‡”Ô‚ðŽw’è‚µ‚Ä—v‘f‚ð•\Ž¦]" << std::endl;
+		std::cout << "•\Ž¦‚µ‚½‚¢—v‘f‚Ì‡”Ô‚ðŽw’è‚µ‚Ä‚­‚¾‚³‚¢B" << std::endl;
+
+		//Žw’è‚·‚é”Ô†‚ðŽæ“¾
+		int specifyNum;
+		std::cin >> specifyNum;
+		std::cout << std::endl;
+
+		//Žw’è‚µ‚Ä•\Ž¦
+		endCell.SpecifyElement(specifyNum);
 
 	case 9:
 		select = sceneSelect;
@@ -130,32 +144,44 @@ void index(CELL* endCell, int& select) {
 		break;
 	}
 
+	//—v‘f‘€ì‚É–ß‚ç‚È‚©‚Á‚½‚ç
+	if (sceneSelect == 1 || sceneSelect == 2)
+	{
+		std::cout << std::endl;
+		std::cout << "----------------------------------" << std::endl;
+		std::cout << "1.—v‘f‚Ì•\Ž¦‚É–ß‚é" << std::endl;
+		std::cout << "2.—v‘f‚Ì‘€ì‚É–ß‚é" << std::endl;
 
+		//‘€ì”Ô†‚ðŽæ“¾
+		std::cin >> sceneSelect;
+
+		system("cls");
+		switch (sceneSelect)
+		{
+		case 1:
+			select = 1;
+			break;
+		case 2:
+			select = 0;
+			break;
+		default:
+			break;
+		}
+	}
 
 }
 
-void create(CELL* currentCell, int val) {
-	CELL* newCell;
-	newCell = (CELL*)malloc(sizeof(CELL));
+void create(Cell* currentCell, int val) {
+	Cell* newCell;
+	newCell = (Cell*)malloc(sizeof(Cell));
 	newCell->val = val;
 	newCell->prev = currentCell;
 	newCell->next = currentCell->next;
 
 	if (currentCell->next) {
-		CELL* newCell = currentCell->next;
+		Cell* newCell = currentCell->next;
 		newCell->prev = newCell;
 	}
 	currentCell->next = newCell;
 }
 
-CELL* getInsertCellAddress(CELL* endCELL, int iterator) {
-	for (int i = 0; i < iterator; i++) {
-		if (endCELL->next) {
-			endCELL = endCELL->next;
-		}
-		else {
-			break;
-		}
-	}
-	return endCELL;
-}

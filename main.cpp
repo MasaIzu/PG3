@@ -3,8 +3,8 @@
 #include"MakeMyList.h"
 #include <iostream>
 
-void create(CELL* currentCell, int val); //プロトタイプ宣言
 void index(CELL* endCell, int& select);
+void create(CELL* currentCell, int val);
 CELL* getInsertCellAddress(CELL* endCELL, int iterator);
 
 int main()
@@ -17,6 +17,8 @@ int main()
 	head.next = nullptr;
 
 	int select = 0;
+
+
 
 	while (1) {
 		switch (select) {
@@ -41,11 +43,30 @@ int main()
 			index(&head, select);
 			break;
 		case 2:
+			system("cls");
+			std::cout << "[要素の挿入]" << std::endl;
+			//リストの挿入
+			std::cout << "要素を追加する場所を選択してください" << std::endl;
+			scanf_s("%d",&iterator);
 
+			std::cout << "追加する要素の値を入力してください" << std::endl;
+			scanf_s("%d", &inputValue);
+
+			//任意のセルの後ろに追加
+			insertCell = getInsertCellAddress(&head,iterator);
+			create(insertCell, inputValue);
+
+			std::cout << "要素"<< inputValue<< "が" << iterator<< "に追加されました" << std::endl;
+
+			std::cout << "要素の操作に戻るには0を入力してください" << std::endl;
+			scanf_s("%d", &select);
+			break;
 		case 3:
 
+			break;
 		case 4:
 
+			break;
 		default:
 			std::cout << "値が無効です" << std::endl;
 			std::cout << "1,2,3,4,5 から選択してください" << std::endl;
@@ -74,6 +95,45 @@ int main()
 	return 0;
 }
 
+
+void index(CELL* endCell, int& select) {
+	int no = 1;
+	std::cout << "[要素の表示]" << std::endl;
+	std::cout << "1.要素の一覧表示" << std::endl;
+	std::cout << "2.順番を指定して要素を表示" << std::endl;
+	std::cout << "9.要素操作に戻る" << std::endl;
+	std::cout << std::endl;
+	std::cout << "操作を選択してください" << std::endl;
+	int sceneSelect;
+	scanf_s("%d", &sceneSelect);
+	system("cls");
+
+	switch (sceneSelect){
+	case 1:
+		while (endCell->next != nullptr) {
+			std::cout << "[要素の一覧表示]" << std::endl;
+			endCell = endCell->next;
+			std::cout << ' ' << no << ':' << '"' << endCell->val << '"' << ',' << std::endl;
+			no++;
+		}
+
+		scanf_s("%d", &sceneSelect);
+		break;
+
+	case 2:
+
+
+	case 9:
+		select = sceneSelect;
+
+	default:
+		break;
+	}
+
+
+
+}
+
 void create(CELL* currentCell, int val) {
 	CELL* newCell;
 	newCell = (CELL*)malloc(sizeof(CELL));
@@ -86,33 +146,6 @@ void create(CELL* currentCell, int val) {
 		newCell->prev = newCell;
 	}
 	currentCell->next = newCell;
-}
-
-
-void index(CELL* endCell, int& select) {
-	int no = 1;
-	std::cout << "[要素の表示]" << std::endl;
-	std::cout << "1.要素の一覧表示" << std::endl;
-	std::cout << "2.順番を指定して要素を表示" << std::endl;
-	std::cout << "9.要素操作に戻る" << std::endl;
-	int sceneSelect;
-	scanf_s("%d", &sceneSelect);
-	while (endCell->next != nullptr) {
-		endCell = endCell->next;
-		printf("%d ", no);
-		printf("%p ", endCell->prev);
-		printf("%5d ", endCell->val);
-		printf("(%p) ", endCell);
-		printf("%p\n ", endCell->next);
-		no++;
-	}
-	printf("戻るなら0を入力\n");
-	int sceneSelect;
-	scanf_s("%d", &sceneSelect);
-	select = sceneSelect;
-
-
-
 }
 
 CELL* getInsertCellAddress(CELL* endCELL, int iterator) {

@@ -46,42 +46,6 @@ public:
 		
 	}
 
-	//一番前に追加
-	void Push_Front(T value_)
-	{
-		Cell<T>* cur = sampleDummy;
-		Add(value_, cur);
-	}
-
-	/// <summary>
-	/// 一番後ろに追加
-	/// </summary>
-	/// <param name="value_">値</param>
-	void Push_Back(T value_)
-	{
-		Cell<T>* cur = sampleDummy->prev;
-		Add(value_, cur);
-	}
-
-	/// <summary>
-	/// 任意の場所に追加
-	/// </summary>
-	/// <param name="value_">値</param>
-	/// <param name="num">追加する場所(0~)</param>
-	void Insert(T value_, int num)
-	{
-		Cell<T>* cell = nullptr;
-		cell = sampleDummy;
-
-		//任意の場所まで移動
-		for (int i = 0; i < num; i++)
-		{
-			cell = cell->next;
-		}
-
-		//追加
-		Add(value_, cell);
-	}
 
 	//
 	bool Search(int num)
@@ -123,61 +87,6 @@ public:
 
 	}
 
-	/// <summary>
-	/// 一覧表示
-	/// </summary>
-	void Dump()
-	{
-		Cell<T>* ptr = sampleDummy->next;
-
-		std::cout << "要素一覧:{" << std::endl;
-
-		int index = 0;
-		for (int i = 0; i < size - 1; i++)
-		{
-			std::cout << ' ' << index << ':' << '"' << ptr->value << '"' << ',' << std::endl;
-			ptr = ptr->next;
-			index++;
-		}
-		std::cout << ' ' << index << ':' << '"' << ptr->value << '"' << std::endl;
-
-		std::cout << '}' << std::endl;
-	}
-
-	void DesignatedElement(int num)
-	{
-		Cell<T>* cell = nullptr;
-		cell = sampleDummy;
-
-		int index = -1;
-
-		for (int i = 0; i < num + 1; i++)
-		{
-			cell = cell->next;
-			index++;
-		}
-
-		std::cout << index << ':' << cell->value << '\n';
-	}
-
-	T GetElement(int num)
-	{
-		Cell<T>* cell = nullptr;
-		cell = sampleDummy;
-
-		for (int i = 0; i < num + 1; i++)
-		{
-			cell = cell->next;
-		}
-
-		return cell->value;
-	}
-
-	int Size()
-	{
-		return size;
-	}
-
 	bool Delete(int num)
 	{
 		if (num < 0 || num>size)
@@ -204,11 +113,100 @@ public:
 		return true;
 	}
 
-
-	void Sort(bool flag = true)
+	void DesignatedElement(int num)
 	{
-		
+		Cell<T>* cell = nullptr;
+		cell = sampleDummy;
+
+		int index = -1;
+
+		for (int i = 0; i < num + 1; i++)
+		{
+			cell = cell->next;
+			index++;
+		}
+
+		std::cout << index << ':' << cell->value << '\n';
 	}
+
+	/// <summary>
+	/// 一覧表示
+	/// </summary>
+	void Dump()
+	{
+		Cell<T>* ptr = sampleDummy->next;
+
+		std::cout << "要素一覧:{" << std::endl;
+
+		int index = 0;
+		for (int i = 0; i < size - 1; i++)
+		{
+			std::cout << ' ' << index << ':' << '"' << ptr->value << '"' << ',' << std::endl;
+			ptr = ptr->next;
+			index++;
+		}
+		std::cout << ' ' << index << ':' << '"' << ptr->value << '"' << std::endl;
+
+		std::cout << '}' << std::endl;
+	}
+
+	//一番前に追加
+	void Push_Front(T value_)
+	{
+		Cell<T>* cur = sampleDummy;
+		Add(value_, cur);
+	}
+
+	/// <summary>
+	/// 一番後ろに追加
+	/// </summary>
+	/// <param name="value_">値</param>
+	void Push_Back(T value_)
+	{
+		Cell<T>* cur = sampleDummy->prev;
+		Add(value_, cur);
+	}
+
+	/// <summary>
+	/// 任意の場所に追加
+	/// </summary>
+	/// <param name="value_">値</param>
+	/// <param name="num">追加する場所(0~)</param>
+	void Insert(T value_, int num)
+	{
+		Cell<T>* cell = nullptr;
+		cell = sampleDummy;
+
+		//任意の場所まで移動
+		for (int i = 0; i < num; i++)
+		{
+			cell = cell->next;
+		}
+
+		//追加
+		Add(value_, cell);
+	}
+
+
+	T GetElement(int num)
+	{
+		Cell<T>* cell = nullptr;
+		cell = sampleDummy;
+
+		for (int i = 0; i < num + 1; i++)
+		{
+			cell = cell->next;
+		}
+
+		return cell->value;
+	}
+
+	int Size()
+	{
+		return size;
+	}
+
+	
 
 private:
 

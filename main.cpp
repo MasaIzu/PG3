@@ -15,28 +15,17 @@ template<typename T>
 void Delete(MakeMylist<T>& list, int& operationNum);
 
 template<typename T>
-void Change(MakeMylist<T>& list, int& operationNum);
+void SortBy(MakeMylist<T>& list, int& operationNum);
 
 int main()
 {
-	MakeMylist<std::string> list;
-
-	list.PushBack("5");
-	list.PushBack("4");
-	list.PushBack("3");
-	list.PushBack("2");
-	list.PushBack("1");
-
-
-	list.Dump();
-
 	//—v‘f‚Ì‘€ì‚Ì‘€ì”Ô†
-	int operationNum = 0;
+	int sceneSelect = 0;
 
 	//—v‘f‚Ì•\¦‚Ì‘€ì”Ô†
-	int displayOperationNum = 0;
+	int displayScene = 0;
 
-
+	MakeMylist<std::string> list;
 	while (true)
 	{
 		std::cout << "[—v‘f‚Ì‘€ì]" << std::endl;
@@ -49,39 +38,36 @@ int main()
 			std::cout << "4.—v‘f‚Ìíœ" << std::endl;
 		}
 
-		std::cout << "5.—v‘f‚Ì•À‚Ñ‘Ö‚¦(ƒIƒvƒVƒ‡ƒ“)" << std::endl;
 		std::cout << std::endl;
-		std::cout << "----------------------------------" << std::endl;
+		std::cout << "-------------------------------------" << std::endl;
 		std::cout << "‘€ì‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢" << std::endl;
 
 		std::cout << std::endl;
 
-		if (operationNum == 0)
+		if (sceneSelect == 0)
 		{
 			//‘€ì”Ô†‚ğæ“¾
-			std::cin >> operationNum;
+			std::cin >> sceneSelect;
 		}
 		system("cls");
 
-		switch (operationNum)
+		switch (sceneSelect)
 		{
 		case 1://—v‘f‚Ì•\¦
-			Display(list, operationNum, displayOperationNum);
+			Display(list, sceneSelect, displayScene);
 			break;
 
 		case 2://ÅŒã”ö‚É—v‘f‚ğ’Ç‰Á
-			Insert(list, operationNum);
+			Insert(list, sceneSelect);
 			break;
 
 		case 3://”CˆÓ‚ÌêŠ‚Ì’l‚ğ•ÏX
-			Edit(list, operationNum);
+			Edit(list, sceneSelect);
 			break;
 		case 4://”CˆÓ‚ÌêŠ‚Ìíœ
-			Delete(list, operationNum);
+			Delete(list, sceneSelect);
 			break;
-		case 5://”CˆÓ‚ÌêŠ‚Æ”CˆÓ‚ÌêŠ‚ğ“ü‚ê‘Ö‚¦
-			Change(list, operationNum);
-			break;
+
 		}
 	}
 
@@ -89,7 +75,7 @@ int main()
 }
 
 template<typename T>
-void Display(MakeMylist<T>& list, int& operationNum, int& displayOperationNum)
+void Display(MakeMylist<T>& list, int& sceneSelect, int& displayScene)
 {
 	std::cout << "[—v‘f‚Ì•\¦]" << std::endl;
 	std::cout << "1.—v‘f‚Ìˆê——•\¦" << std::endl;
@@ -99,10 +85,10 @@ void Display(MakeMylist<T>& list, int& operationNum, int& displayOperationNum)
 	std::cout << "‘€ì‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢" << std::endl;
 
 	//‘€ì”Ô†‚ğæ“¾
-	std::cin >> displayOperationNum;
+	std::cin >> displayScene;
 	system("cls");
 
-	switch (displayOperationNum)
+	switch (displayScene)
 	{
 	case 1:
 		std::cout << "[—v‘f‚Ìˆê——•\¦]" << std::endl;
@@ -118,22 +104,22 @@ void Display(MakeMylist<T>& list, int& operationNum, int& displayOperationNum)
 		std::cout << "•\¦‚µ‚½‚¢—v‘f‚Ì‡”Ô‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢B" << std::endl;
 
 		//w’è‚·‚é”Ô†‚ğæ“¾
-		int specifyNum;
-		std::cin >> specifyNum;
+		int designatedNumber;
+		std::cin >> designatedNumber;
 		std::cout << std::endl;
 
 		//w’è‚µ‚Ä•\¦
-		list.SpecifyElement(specifyNum);
+		list.DesignatedElement(designatedNumber);
 
 		break;
 
 	case 9:
-		operationNum = 0;
+		sceneSelect = 0;
 		break;
 	}
 
 	//—v‘f‘€ì‚É–ß‚ç‚È‚©‚Á‚½‚ç
-	if (displayOperationNum == 1 || displayOperationNum == 2)
+	if (displayScene == 1 || displayScene == 2)
 	{
 		std::cout << std::endl;
 		std::cout << "----------------------------------" << std::endl;
@@ -141,16 +127,16 @@ void Display(MakeMylist<T>& list, int& operationNum, int& displayOperationNum)
 		std::cout << "2.—v‘f‚Ì‘€ì‚É–ß‚é" << std::endl;
 
 		//‘€ì”Ô†‚ğæ“¾
-		std::cin >> displayOperationNum;
+		std::cin >> displayScene;
 
 		system("cls");
-		switch (displayOperationNum)
+		switch (displayScene)
 		{
 		case 1:
-			operationNum = 1;
+			sceneSelect = 1;
 			break;
 		case 2:
-			operationNum = 0;
+			sceneSelect = 0;
 			break;
 		default:
 			break;
@@ -159,7 +145,7 @@ void Display(MakeMylist<T>& list, int& operationNum, int& displayOperationNum)
 }
 
 template<typename T>
-void Insert(MakeMylist<T>& list, int& operationNum)
+void Insert(MakeMylist<T>& list, int& sceneSelect)
 {
 	std::cout << "[ƒŠƒXƒg—v‘f‚Ì‘}“ü]" << std::endl;
 	std::cout << std::endl;
@@ -177,7 +163,7 @@ void Insert(MakeMylist<T>& list, int& operationNum)
 
 		std::cin >> element;
 
-		list.PushBack(element);
+		list.Push_Back(element);
 
 		std::cout << "—v‘f" << element << "‚ª" << "ÅŒã”ö‚É‘}“ü‚³‚ê‚Ü‚µ‚½" << std::endl;
 	}
@@ -199,21 +185,21 @@ void Insert(MakeMylist<T>& list, int& operationNum)
 	std::cout << "----------------------------------" << std::endl;
 	std::cout << "9.—v‘f‘€ì‚É–ß‚é" << std::endl;
 
-	std::cin >> operationNum;
+	std::cin >> sceneSelect;
 	system("cls");
 
-	if (operationNum == 9)
+	if (sceneSelect == 9)
 	{
-		operationNum = 0;
+		sceneSelect = 0;
 	}
 	else
 	{
-		operationNum = 2;
+		sceneSelect = 2;
 	}
 }
 
 template<typename T>
-void Edit(MakeMylist<T>& list, int& operationNum)
+void Edit(MakeMylist<T>& list, int& sceneSelect)
 {
 	std::cout << "[—v‘f‚Ì•ÒW]" << std::endl;
 	std::cout << std::endl;
@@ -245,22 +231,22 @@ void Edit(MakeMylist<T>& list, int& operationNum)
 	std::cout << "----------------------------------" << std::endl;
 	std::cout << "9.—v‘f‘€ì‚É–ß‚é" << std::endl;
 
-	std::cin >> operationNum;
+	std::cin >> sceneSelect;
 	system("cls");
 
-	if (operationNum == 9)
+	if (sceneSelect == 9)
 	{
-		operationNum = 0;
+		sceneSelect = 0;
 	}
 	else
 	{
-		operationNum = 3;
+		sceneSelect = 3;
 	}
 
 }
 
 template<typename T>
-void Delete(MakeMylist<T>& list, int& operationNum)
+void Delete(MakeMylist<T>& list, int& sceneSelect)
 {
 	std::cout << "[—v‘f‚Ìíœ]" << std::endl;
 	std::cout << std::endl;
@@ -287,63 +273,21 @@ void Delete(MakeMylist<T>& list, int& operationNum)
 	std::cout << "----------------------------------" << std::endl;
 	std::cout << "9.—v‘f‘€ì‚É–ß‚é" << std::endl;
 
-	std::cin >> operationNum;
+	std::cin >> sceneSelect;
 	system("cls");
 
-	if (operationNum == 9)
+	if (sceneSelect == 9)
 	{
-		operationNum = 0;
+		sceneSelect = 0;
 	}
 	else
 	{
-		operationNum = 4;
+		sceneSelect = 4;
 	}
 }
 
 template<typename T>
-void Change(MakeMylist<T>& list, int& operationNum)
+void SortBy(MakeMylist<T>& list, int& operationNum)
 {
-	std::cout << "[—v‘f‚Ì•À‚Ñ‘Ö‚¦]" << std::endl;
-	std::cout << std::endl;
-	std::cout << "•À‚Ñ‘Ö‚¦•û–@‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢" << std::endl;
-	std::cout << "1.¸‡‚Å•À‚Ñ‘Ö‚¦‚é" << std::endl;
-	std::cout << "2.~‡‚Å•À‚Ñ‘Ö‚¦‚é" << std::endl;
-
-	int changeOperationNum;
-
-	std::cin >> changeOperationNum;
-
-	switch (changeOperationNum)
-	{
-	case 1:
-	{
-
-		list.Sort();
-		std::cout << "ƒŠƒXƒg‚Ì—v‘f‚ğ¸‡‚Å•À‚Ñ‘Ö‚¦‚Ü‚µ‚½" << std::endl;
-	}
-	break;
-	case 2:
-		list.Sort(false);
-		std::cout << "ƒŠƒXƒg‚Ì—v‘f‚ğ~‡‚Å•À‚Ñ‘Ö‚¦‚Ü‚µ‚½" << std::endl;
-
-		break;
-	default:
-		break;
-	}
-
-	std::cout << std::endl;
-	std::cout << "----------------------------------" << std::endl;
-	std::cout << "9.—v‘f‘€ì‚É–ß‚é" << std::endl;
-
-	std::cin >> operationNum;
-	system("cls");
-
-	if (operationNum == 9)
-	{
-		operationNum = 0;
-	}
-	else
-	{
-		operationNum = 5;
-	}
+	
 }

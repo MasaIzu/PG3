@@ -36,20 +36,20 @@ class MakeMylist
 public:
 	MakeMylist()
 	{
-		dummy = new Cell<T>();
+		sampleDummy = new Cell<T>();
 
 		size = 0;
 	}
 
 	~MakeMylist()
 	{
-		//Clear();
+		
 	}
 
 	//一番前に追加
-	void PushFront(T value_)
+	void Push_Front(T value_)
 	{
-		Cell<T>* cur = dummy;
+		Cell<T>* cur = sampleDummy;
 		Add(value_, cur);
 	}
 
@@ -57,9 +57,9 @@ public:
 	/// 一番後ろに追加
 	/// </summary>
 	/// <param name="value_">値</param>
-	void PushBack(T value_)
+	void Push_Back(T value_)
 	{
-		Cell<T>* cur = dummy->prev;
+		Cell<T>* cur = sampleDummy->prev;
 		Add(value_, cur);
 	}
 
@@ -70,17 +70,17 @@ public:
 	/// <param name="num">追加する場所(0~)</param>
 	void Insert(T value_, int num)
 	{
-		Cell<T>* tmpCell = nullptr;
-		tmpCell = dummy;
+		Cell<T>* cell = nullptr;
+		cell = sampleDummy;
 
 		//任意の場所まで移動
 		for (int i = 0; i < num; i++)
 		{
-			tmpCell = tmpCell->next;
+			cell = cell->next;
 		}
 
 		//追加
-		Add(value_, tmpCell);
+		Add(value_, cell);
 	}
 
 	//
@@ -107,17 +107,17 @@ public:
 			return false;
 		}
 
-		Cell<T>* tmpCell = nullptr;
-		tmpCell = dummy;
+		Cell<T>* cell = nullptr;
+		cell = sampleDummy;
 
 		//任意の場所まで移動
 		for (int i = 0; i < num + 1; i++)
 		{
-			tmpCell = tmpCell->next;
+			cell = cell->next;
 		}
 
 		//変更
-		tmpCell->value = value_;
+		cell->value = value_;
 
 		return true;
 
@@ -128,7 +128,7 @@ public:
 	/// </summary>
 	void Dump()
 	{
-		Cell<T>* ptr = dummy->next;
+		Cell<T>* ptr = sampleDummy->next;
 
 		std::cout << "要素一覧:{" << std::endl;
 
@@ -144,33 +144,33 @@ public:
 		std::cout << '}' << std::endl;
 	}
 
-	void SpecifyElement(int num)
+	void DesignatedElement(int num)
 	{
-		Cell<T>* tmpCell = nullptr;
-		tmpCell = dummy;
+		Cell<T>* cell = nullptr;
+		cell = sampleDummy;
 
 		int index = -1;
 
 		for (int i = 0; i < num + 1; i++)
 		{
-			tmpCell = tmpCell->next;
+			cell = cell->next;
 			index++;
 		}
 
-		std::cout << index << ':' << tmpCell->value << '\n';
+		std::cout << index << ':' << cell->value << '\n';
 	}
 
 	T GetElement(int num)
 	{
-		Cell<T>* tmpCell = nullptr;
-		tmpCell = dummy;
+		Cell<T>* cell = nullptr;
+		cell = sampleDummy;
 
 		for (int i = 0; i < num + 1; i++)
 		{
-			tmpCell = tmpCell->next;
+			cell = cell->next;
 		}
 
-		return tmpCell->value;
+		return cell->value;
 	}
 
 	int Size()
@@ -185,19 +185,19 @@ public:
 			return false;
 		}
 
-		Cell<T>* tmpCell = nullptr;
-		tmpCell = dummy;
+		Cell<T>* cell = nullptr;
+		cell = sampleDummy;
 
 		//任意の場所まで移動
 		for (int i = 0; i < num + 1; i++)
 		{
-			tmpCell = tmpCell->next;
+			cell = cell->next;
 		}
 
-		tmpCell->prev->next = tmpCell->next;
-		tmpCell->next->prev = tmpCell->next;
+		cell->prev->next = cell->next;
+		cell->next->prev = cell->next;
 
-		delete tmpCell;
+		delete cell;
 
 		size--;
 
@@ -207,43 +207,13 @@ public:
 
 	void Sort(bool flag = true)
 	{
-		Cell<T>* tmpCell = nullptr;
-
-		Cell<T>* tmpCell2 = nullptr;
-
-		for (int i = 0; i < (size - 1); i++)
-		{
-			tmpCell = GetCell(i);
-
-			for (int j = (size - 1); j > i; j--)
-			{
-				tmpCell2 = GetCell(j);
-				if (flag)
-				{
-					if (tmpCell2->value < tmpCell2->prev->value)
-					{
-						T value = tmpCell2->value;
-						ChangeValue(tmpCell2->prev->value, j);
-						ChangeValue(value, j - 1);
-					}
-				}
-				else
-				{
-					if (tmpCell2->value > tmpCell2->prev->value)
-					{
-						T value = tmpCell2->value;
-						ChangeValue(tmpCell2->prev->value, j);
-						ChangeValue(value, j - 1);
-					}
-				}
-			}
-		}
+		
 	}
 
 private:
 
-	//ダミー
-	Cell<T>* dummy;
+	//サンプルダミー
+	Cell<T>* sampleDummy;
 
 	int size;
 
@@ -260,14 +230,14 @@ private:
 
 	Cell<T>* GetCell(int num)
 	{
-		Cell<T>* tmpCell = dummy;
+		Cell<T>* cell = sampleDummy;
 
 		//任意の場所まで移動
 		for (int i = 0; i < num + 1; i++)
 		{
-			tmpCell = tmpCell->next;
+			cell = cell->next;
 		}
 
-		return tmpCell;
+		return cell;
 	}
 };

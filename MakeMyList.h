@@ -206,6 +206,40 @@ public:
 		return size;
 	}
 
+	void Sort(bool flag = true)
+	{
+		Cell<T>* tmpCell = nullptr;
+
+		Cell<T>* tmpCell2 = nullptr;
+
+		for (int i = 0; i < (size - 1); i++)
+		{
+			tmpCell = GetCell(i);
+
+			for (int j = (size - 1); j > i; j--)
+			{
+				tmpCell2 = GetCell(j);
+				if (flag)
+				{
+					if (tmpCell2->value < tmpCell2->prev->value)
+					{
+						T value = tmpCell2->value;
+						ChangeValue(tmpCell2->prev->value, j);
+						ChangeValue(value, j - 1);
+					}
+				}
+				else
+				{
+					if (tmpCell2->value > tmpCell2->prev->value)
+					{
+						T value = tmpCell2->value;
+						ChangeValue(tmpCell2->prev->value, j);
+						ChangeValue(value, j - 1);
+					}
+				}
+			}
+		}
+	}
 	
 
 private:

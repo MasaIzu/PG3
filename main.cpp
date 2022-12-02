@@ -3,19 +3,22 @@
 #include<string>
 
 template<typename T>
-void Display(MakeMylist<T>& list, int& operationNum, int& displayOperationNum);
+void Display(MakeMylist<T>& list, int& sceneSelect, int& displayScene);
 
 template<typename T>
-void Insert(MakeMylist<T>& list, int& operationNum);
+void Insert(MakeMylist<T>& list, int& sceneSelect);
 
 template<typename T>
-void Edit(MakeMylist<T>& list, int& operationNum);
+void Edit(MakeMylist<T>& list, int& sceneSelect);
 
 template<typename T>
-void Delete(MakeMylist<T>& list, int& operationNum);
+void Delete(MakeMylist<T>& list, int& sceneSelect);
 
 template<typename T>
-void SortBy(MakeMylist<T>& list, int& operationNum);
+void SortBy(MakeMylist<T>& list, int& sceneSelect);
+
+template<typename T>
+void Change(MakeMylist<T>& list, int& sceneSelect);
 
 int main()
 {
@@ -38,6 +41,7 @@ int main()
 			std::cout << "4.—v‘f‚Ìíœ" << std::endl;
 		}
 
+		std::cout << "5.—v‘f‚Ì•À‚Ñ‘Ö‚¦(ƒIƒvƒVƒ‡ƒ“)" << std::endl;
 		std::cout << std::endl;
 		std::cout << "-------------------------------------" << std::endl;
 		std::cout << "‘€ì‚ð‘I‘ð‚µ‚Ä‚­‚¾‚³‚¢" << std::endl;
@@ -67,7 +71,9 @@ int main()
 		case 4://”CˆÓ‚ÌêŠ‚Ìíœ
 			Delete(list, sceneSelect);
 			break;
-
+		case 5://”CˆÓ‚ÌêŠ‚Æ”CˆÓ‚ÌêŠ‚ð“ü‚ê‘Ö‚¦
+			Change(list, sceneSelect);
+			break;
 		}
 	}
 
@@ -287,7 +293,49 @@ void Delete(MakeMylist<T>& list, int& sceneSelect)
 }
 
 template<typename T>
-void SortBy(MakeMylist<T>& list, int& operationNum)
+void Change(MakeMylist<T>& list, int& sceneSelect)
 {
-	
+	std::cout << "[—v‘f‚Ì•À‚Ñ‘Ö‚¦]" << std::endl;
+	std::cout << std::endl;
+	std::cout << "•À‚Ñ‘Ö‚¦•û–@‚ð‘I‘ð‚µ‚Ä‚­‚¾‚³‚¢" << std::endl;
+	std::cout << "1.¸‡‚Å•À‚Ñ‘Ö‚¦‚é" << std::endl;
+	std::cout << "2.~‡‚Å•À‚Ñ‘Ö‚¦‚é" << std::endl;
+
+	int changeScene;
+
+	std::cin >> changeScene;
+
+	switch (changeScene)
+	{
+	case 1:
+	{
+
+		list.Sort();
+		std::cout << "ƒŠƒXƒg‚Ì—v‘f‚ð¸‡‚Å•À‚Ñ‘Ö‚¦‚Ü‚µ‚½" << std::endl;
+	}
+	break;
+	case 2:
+		list.Sort(false);
+		std::cout << "ƒŠƒXƒg‚Ì—v‘f‚ð~‡‚Å•À‚Ñ‘Ö‚¦‚Ü‚µ‚½" << std::endl;
+
+		break;
+	default:
+		break;
+	}
+
+	std::cout << std::endl;
+	std::cout << "----------------------------------" << std::endl;
+	std::cout << "9.—v‘f‘€ì‚É–ß‚é" << std::endl;
+
+	std::cin >> sceneSelect;
+	system("cls");
+
+	if (sceneSelect == 9)
+	{
+		sceneSelect = 0;
+	}
+	else
+	{
+		sceneSelect = 5;
+	}
 }

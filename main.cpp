@@ -67,6 +67,5 @@ int main()
 		std::cout << *itr << "\n";
 	}
 
-
 	return 0;
 }

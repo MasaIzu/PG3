@@ -1,14 +1,10 @@
 #include<stdlib.h>
-#include<list>
-
-using namespace std;
+#include"TestSingleton.h"
 
 int main() {
 
-	list<const char*> lst{"ou"};
-
-	
+	//インスタンスを取得して、すぐ使用
+	TestSingleton::GetInstance();
 
 	return 0;
-
 }

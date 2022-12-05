@@ -1,16 +1,25 @@
 #pragma once
 
-class TestSingleton {
+class SceneManager final{
 private:
 	//コンストラクタをprivateにする
-	TestSingleton();
+	SceneManager();
 	//デストラクタをprivateにする
-	~TestSingleton();
+	~SceneManager();
 
 public:
 	//コピーコンストラクタを無効にする
-	TestSingleton(const TestSingleton& obj) = delete;
+	SceneManager(const SceneManager& obj) = delete;
 	//代入演算子を無効にする
-	TestSingleton& operator=(const TestSingleton& obj) = delete;
+	SceneManager& operator=(const SceneManager& obj) = delete;
+
+	static SceneManager* GetInstance();
+
+	void TitleScene();
+	void NewGameScene();
+	void GamePlayScene();
+	void GameClear();
+
+	void ChangeScene(int nextScene);
 
 };

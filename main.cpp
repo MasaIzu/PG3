@@ -15,9 +15,6 @@ template<typename T>
 void Delete(MakeMylist<T>& list, int& sceneSelect);
 
 template<typename T>
-void SortBy(MakeMylist<T>& list, int& sceneSelect);
-
-template<typename T>
 void Change(MakeMylist<T>& list, int& sceneSelect);
 
 int main()

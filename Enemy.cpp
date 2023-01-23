@@ -1,24 +1,44 @@
 #include "Enemy.h"
 #include <stdio.h>
-#include <stdlib.h>
 
-bool Enemy::IsEnemyAlive;
 
-void Enemy::Initialize() {
 
+Enemy::Enemy()
+{
+	phaseNum = 0;
+}
+
+void Enemy::Initialize()
+{
+	phaseNum = 0;
 }
 
 void Enemy::Update()
 {
-	system("cls");
-	if (IsEnemyAlive == false) {
-		printf("“G‚Í¶‚«‚Ä‚¢‚é\n");
-	}
-	else if (IsEnemyAlive == true) {
-		printf("“G‚Í“|‚³‚ê‚½\n");
+	(this->*pFunc[phaseNum])();
+	phaseNum++;
+	if (phaseNum > 2) {
+		phaseNum = 0;
 	}
 }
 
-void Enemy::Draw() {
-
+void Enemy::Proximity()
+{
+	printf("‹ßÚUŒ‚\n");
 }
+
+void Enemy::Shooting()
+{
+	printf("ËŒ‚UŒ‚\n");
+}
+
+void Enemy::Secession()
+{
+	printf("—£’E\n");
+}
+
+void (Enemy::* Enemy::pFunc[])() = {
+		&Enemy::Proximity, // —v‘f”Ô† 0
+		&Enemy::Shooting,  // —v‘f”Ô† 1
+		&Enemy::Secession  // —v‘f”Ô† 2
+};

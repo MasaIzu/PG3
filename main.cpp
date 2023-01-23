@@ -1,26 +1,20 @@
-#include "GameScene.h"
 #include <windows.h>
+#include "Enemy.h"
 
 int main() {
+	Enemy* enemy = new Enemy;
 
-	// 関数の宣言
-	GameScene* gamescene_ = new GameScene;
-	gamescene_->Initialize();
+	// 初期化処理
+	enemy->Initialize();
 
-	// ゲームループ
-	while (true) {
-
+	while (true)
+	{
 		// 更新処理
-		gamescene_->Update();
-
-		// 描画処理
-		gamescene_->Draw();
+		enemy->Update();
 
 		// スリープ
-		Sleep(1 * 1000);
+		Sleep(1.2 * 1000);
 	}
-
-	delete gamescene_;
 
 	system("pause");
 	return 0;

@@ -2,17 +2,16 @@
 class Enemy
 {
 public:
-	//メンバ関数
-	// 初期化
+	Enemy();
+
 	void Initialize();
-
-	// アップデート
 	void Update();
+	void Proximity();
+	void Shooting();
+	void Secession();
 
-	// 描画処理
-	void Draw();
-
-public:
-	//静的メンバ変数
-	static bool IsEnemyAlive;
+private:
+	// ƒƒ“ƒoŠÖ”ƒ|ƒCƒ“ƒ^
+	static void (Enemy::* pFunc[])();
+	int phaseNum = 0;
 };

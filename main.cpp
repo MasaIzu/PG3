@@ -1,22 +1,25 @@
-#include <stdio.h>
-#include <Windows.h>
-#include "SceneManager.h"
+#include "GameScene.h"
+#include <windows.h>
+
 int main() {
-	
-	SceneManager* sceneManager = SceneManager::GetInstance();
-	int NowScene = 0;
 
-	while (1) {
-		if (NowScene > 3) {
-			NowScene = 0;
-		}
+	// 関数の宣言
+	GameScene* gamescene_ = new GameScene;
+	gamescene_->Initialize();
 
-		sceneManager->ChangeScene(NowScene);
-		NowScene++;
+	// ゲームループ
+	while (true) {
+
+		// 更新処理
+		gamescene_->Update();
+
+		// 描画処理
+		gamescene_->Draw();
+
+		// スリープ
 		Sleep(1 * 1000);
 	}
 
-	system("pause");
+	delete gamescene_;
 	return 0;
-
 }

@@ -12,7 +12,7 @@ public:
 	// 描画処理
 	void Draw();
 
-private:
+public:
 	//静的メンバ変数
 	static bool IsEnemyAlive;
 };

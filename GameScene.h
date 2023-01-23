@@ -13,7 +13,7 @@ public:
 	void Draw();
 private:
 	//ƒƒ“ƒo•Ï”
-	Enemy* enemy1 = new Enemy;
+	Enemy* enemy = new Enemy;
 	Enemy* enemy2 = new Enemy;
 	Enemy* enemy3 = new Enemy;
 

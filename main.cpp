@@ -21,5 +21,7 @@ int main() {
 	}
 
 	delete gamescene_;
+
+	system("pause");
 	return 0;
 }

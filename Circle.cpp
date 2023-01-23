@@ -1,0 +1,17 @@
+#include "Circle.h"
+#include <stdio.h>
+Circle::~Circle()
+{
+	printf("Ç‹ÇÈÇ™è¡Ç¶ÇΩ\n");
+}
+
+void Circle::Draw()
+{
+	printf("Ç‹ÇÈÇ™Ç§Ç‹ÇÍÇΩ\n");
+}
+
+void Circle::Size()
+{
+	float result = radius * radius * PI;
+	printf("ñ êœ:%f\n", result);
+}

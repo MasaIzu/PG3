@@ -1,21 +1,29 @@
-#include <windows.h>
-#include "Enemy.h"
+ï»¿#include "Circle.h"
+#include "Rectangle.h"
+#include "IShape.h"
 
 int main() {
-	Enemy* enemy = new Enemy;
-
-	// ‰Šú‰»ˆ—
-	enemy->Initialize();
-
-	while (true)
+	// Âã‚µã‚¤ã‚ºæ±ºã‚
+	int size = 2;
+	IShape* ishape[] =
 	{
-		// XVˆ—
-		enemy->Update();
+		new Circle,
+		new Rectangle
+	};
 
-		// ƒXƒŠ[ƒv
-		Sleep(1.2 * 1000);
+	// æç”»
+	for (int i = 0; i < size; i++)
+	{
+		ishape[i]->Draw();
+		ishape[i]->Size();
 	}
 
-	system("pause");
+	// æ¶ˆã™
+	for (int i = 0; i < size; i++)
+	{
+		ishape[i]->~IShape();
+	}
+
+
 	return 0;
 }
